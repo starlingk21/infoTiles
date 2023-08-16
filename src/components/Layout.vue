@@ -5,13 +5,13 @@
       <Menu
         theme="dark"
         mode="horizontal"
-        v-model:selectedKeys="selectedKeys"
+        :selectedKeys="selectedKeys"
         :style="{ lineHeight: '64px' }"
       >
         <MenuItem key="1">Table</MenuItem>
       </Menu>
     </LayoutHeader>
-    <LayoutContent style="padding: 0 50px">
+    <LayoutContent class="layout-content">
       <slot> </slot>
     </LayoutContent>
   </Layout>
@@ -31,14 +31,13 @@ defineProps({
   siteName: String,
 });
 
+// Hardcoding the navigation element as active
 const selectedKeys = ref(['1']);
 </script>
 
 <style scoped>
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
+.layout-content {
+  padding: 0 50px;
 }
 .ant-layout-header .logo {
   color: #fff;

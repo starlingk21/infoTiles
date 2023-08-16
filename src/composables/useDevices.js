@@ -2,27 +2,38 @@ import axios from 'axios';
 import { ref } from 'vue';
 
 export function useDevices() {
-  const loading = ref(true);
+  const isLoading = ref(false);
+  const deviceList = ref([]);
 
-  const getDevices = (payload, tokenId) => {
-    axios
+  // POST Request to access devices data from the API
+  const getDevices = async (payload, tokenId) => {
+    isLoading.value = true;
+
+    const req = await axios
       .post(
         'https://dev-iotdevices-api.klinkplatform.com/api/Devices/getDevices',
         payload,
         {
           headers: {
             accept: 'text/plain',
-            'content-type': 'application/json',
+            'Content-Type': 'application/json',
             Authorization: tokenId,
           },
         }
       )
       .then((response) => {
-        loading.value = false;
-        console.log(response);
+        deviceList.value = response;
+        isLoading.value = false;
       })
-      .catch((error) => error.response.data);
+      .catch((error) => {
+        deviceList.value = error.response.data.error;
+        isLoading.value = false;
+      });
   };
 
-  return { getDevices };
+  return {
+    getDevices,
+    isLoading,
+    deviceList,
+  };
 }
