@@ -1,7 +1,12 @@
+<template>
+  <Layout :siteName="pageTitle">
+    <Table :dataSource="dataSource" :columns="columns" />
+  </Layout>
+</template>
+
 <script setup>
-import { ref } from 'vue';
-import { Button, Table } from 'ant-design-vue';
-import 'ant-design-vue/lib/button/style';
+import Layout from '../components/Layout.vue';
+import { Table } from 'ant-design-vue';
 
 const dataSource = [
   {
@@ -37,18 +42,6 @@ const columns = [
 ];
 
 defineProps({
-  msg: String,
+  pageTitle: String,
 });
-
-const count = ref(0);
 </script>
-
-<template>
-  <h1>{{ msg }}</h1>
-
-  <Table :dataSource="dataSource" :columns="columns" />
-
-  <div class="card">
-    <Button type="primary" @click="count++">count is {{ count }}</Button>
-  </div>
-</template>

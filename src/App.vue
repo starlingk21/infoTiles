@@ -1,7 +1,14 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import DevicesTable from './views/DevicesTable.vue';
 </script>
 
 <template>
-  <HelloWorld msg="InfoTiles Table" />
+  <DevicesTable pageTitle="Devices" />
 </template>
+
+<style>
+body {
+  padding: 0;
+  margin: 0;
+}
+</style>
